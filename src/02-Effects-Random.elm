@@ -60,9 +60,38 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text (toString model.dieFace) ]
+        [ img [ src (getImagePath model.dieFace) ] []
         , button [ onClick Roll ] [ text "Roll" ]
         ]
+
+
+getImagePath : Int -> String
+getImagePath dieFace =
+    let
+        file =
+            case dieFace of
+                1 ->
+                    "one"
+
+                2 ->
+                    "two"
+
+                3 ->
+                    "three"
+
+                4 ->
+                    "four"
+
+                5 ->
+                    "five"
+
+                6 ->
+                    "six"
+
+                _ ->
+                    "one"
+    in
+        "images/" ++ file ++ ".png"
 
 
 
