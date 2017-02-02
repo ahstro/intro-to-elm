@@ -31,6 +31,7 @@ init =
 type Msg
     = MorePlease
     | NewGif (Result Http.Error String)
+    | NewTopic String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -38,6 +39,9 @@ update msg model =
     case msg of
         MorePlease ->
             ( { model | error = Nothing }, getRandomGif model.topic )
+
+        NewTopic newTopic ->
+            ( { model | topic = newTopic }, Cmd.none )
 
         NewGif (Ok newUrl) ->
             ( { model | gifUrl = newUrl }, Cmd.none )
@@ -65,12 +69,12 @@ getStringFromHttpError error =
             error
 
 
-
 getRandomGif : String -> Cmd Msg
 getRandomGif topic =
     let
         url =
             "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" ++ topic
+
         request =
             Http.get url decodeGifUrl
     in
@@ -85,7 +89,7 @@ decodeGifUrl =
 view : Model -> Html Msg
 view model =
     div []
-        [ h2 [] [ text model.topic ]
+        [ input [ value model.topic, onInput NewTopic ] []
         , h2 [] [ text (getError model.error) ]
         , img [ src model.gifUrl ] []
         , button [ onClick MorePlease ] [ text "More please" ]
