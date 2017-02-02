@@ -89,7 +89,11 @@ decodeGifUrl =
 view : Model -> Html Msg
 view model =
     div []
-        [ input [ value model.topic, onInput NewTopic ] []
+        [ select [ onInput NewTopic ]
+          [ option [ value "cats" ] [ text "cats" ]
+          , option [ value "dogs" ] [ text "dogs" ]
+          , option [ value "slow loris" ] [ text "slow loris" ]
+          ]
         , h2 [] [ text (getError model.error) ]
         , img [ src model.gifUrl ] []
         , button [ onClick MorePlease ] [ text "More please" ]
