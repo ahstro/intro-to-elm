@@ -1,4 +1,4 @@
-module Main exposing (..)
+module TextFields exposing (..)
 
 import Html exposing (Html, button, div, text, input)
 import Html.Attributes exposing (..)

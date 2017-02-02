@@ -1,4 +1,4 @@
-module Main exposing (..)
+module HTTP exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (..)
