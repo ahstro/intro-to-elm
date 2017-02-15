@@ -1,4 +1,4 @@
-module Random exposing (..)
+module RandomDice exposing (..)
 
 import Debug
 import Html exposing (..)
