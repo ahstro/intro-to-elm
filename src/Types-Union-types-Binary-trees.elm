@@ -84,6 +84,20 @@ sum tree =
             v + sum left + sum right
 
 
+flatten : Tree a -> List a
+flatten tree =
+    case tree of
+        Empty ->
+            []
+
+        Node v left right ->
+            List.concat
+                [ List.singleton v
+                , flatten left
+                , flatten right
+                ]
+
+
 
 -- PLAYGROUND
 
@@ -103,6 +117,8 @@ main =
         , display "incremented" (map (\n -> n + 1) niceTree)
         , display "sum deepTree" (sum deepTree)
         , display "sum niceTree" (sum niceTree)
+        , display "flatten deepTree" (flatten deepTree)
+        , display "flatten niceTree" (flatten niceTree)
         ]
 
 
