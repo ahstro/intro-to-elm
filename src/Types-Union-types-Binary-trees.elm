@@ -74,6 +74,15 @@ map f tree =
             Node (f v) (map f left) (map f right)
 
 
+sum : Tree number -> number
+sum tree =
+    case tree of
+        Empty ->
+            0
+
+        Node v left right ->
+            v + sum left + sum right
+
 
 
 -- PLAYGROUND
@@ -92,6 +101,8 @@ main =
         [ display "depth deepTree" (depth deepTree)
         , display "depth niceTree" (depth niceTree)
         , display "incremented" (map (\n -> n + 1) niceTree)
+        , display "sum deepTree" (sum deepTree)
+        , display "sum niceTree" (sum niceTree)
         ]
 
 
