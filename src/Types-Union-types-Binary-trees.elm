@@ -98,6 +98,19 @@ flatten tree =
                 ]
 
 
+isElement : a -> Tree a -> Bool
+isElement el tree =
+    case tree of
+        Empty ->
+            False
+
+        Node v left right ->
+            if v == el then
+                True
+            else
+                isElement el left || isElement el right
+
+
 
 -- PLAYGROUND
 
@@ -119,6 +132,10 @@ main =
         , display "sum niceTree" (sum niceTree)
         , display "flatten deepTree" (flatten deepTree)
         , display "flatten niceTree" (flatten niceTree)
+        , display "isElement 1 deepTree" (isElement 1 deepTree)
+        , display "isElement 4 deepTree" (isElement 4 deepTree)
+        , display "isElement 1 niceTree" (isElement 1 niceTree)
+        , display "isElement 4 niceTree" (isElement 4 niceTree)
         ]
 
 
