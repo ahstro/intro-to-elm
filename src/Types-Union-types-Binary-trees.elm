@@ -80,17 +80,8 @@ sum =
 
 
 flatten : Tree a -> List a
-flatten tree =
-    case tree of
-        Empty ->
-            []
-
-        Node v left right ->
-            List.concat
-                [ List.singleton v
-                , flatten left
-                , flatten right
-                ]
+flatten =
+    fold (::) []
 
 
 isElement : a -> Tree a -> Bool
