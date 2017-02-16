@@ -111,6 +111,23 @@ isElement el tree =
                 isElement el left || isElement el right
 
 
+fold : (a -> b -> b) -> b -> Tree a -> b
+fold f b tree =
+    case tree of
+        Empty ->
+            b
+
+        Node v left right ->
+            let
+                bOfLeft =
+                    fold f b left
+
+                bOfRight =
+                    fold f bOfLeft right
+            in
+                f v bOfRight
+
+
 
 -- PLAYGROUND
 
@@ -136,6 +153,8 @@ main =
         , display "isElement 4 deepTree" (isElement 4 deepTree)
         , display "isElement 1 niceTree" (isElement 1 niceTree)
         , display "isElement 4 niceTree" (isElement 4 niceTree)
+        , display "fold (+) 0 deepTree" (fold (+) 0 deepTree)
+        , display "fold (+) 0 niceTree" (fold (+) 0 niceTree)
         ]
 
 
