@@ -85,16 +85,8 @@ flatten =
 
 
 isElement : a -> Tree a -> Bool
-isElement el tree =
-    case tree of
-        Empty ->
-            False
-
-        Node v left right ->
-            if v == el then
-                True
-            else
-                isElement el left || isElement el right
+isElement e =
+    fold (\a b -> b || a == e) False
 
 
 fold : (a -> b -> b) -> b -> Tree a -> b
